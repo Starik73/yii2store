@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use app\models\Category;
 
 /**
  * This is the model class for table "product".
@@ -60,5 +61,10 @@ class Product extends ActiveRecord
             'img' => 'Img',
             'is_offer' => 'Is Offer',
         ];
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 }

@@ -6,22 +6,24 @@
 /* @var $exception Exception */
 
 use yii\helpers\Html;
+use Yii;
 
 $this->title = $name;
 ?>
 <div class="site-error">
+    <div class="container text-center">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+        <div class="alert alert-info">
+           <b> <?= nl2br(Html::encode($message)) ?> </b>
+        </div>
+
+        <p>
+        Вернуться на главную страницу
+        </p>
+        <p class="p-5 m-5">
+            <a class='btn btn-success p-5 m-5' href="<?=Yii::$app->homeUrl?>" > Главная страница </a>
+        </p>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
 </div>

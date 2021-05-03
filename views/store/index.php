@@ -3,39 +3,42 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
-<div class="w3l_banner_nav_right">
-    <section class="slider">
-        <div class="flexslider">
-            <ul class="slides">
-                <li>
-                    <div class="w3l_banner_nav_right_banner">
-                        <h3>Make your <span>food</span> with Spicy.</h3>
-                        <div class="more">
-                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+<!-- banner -->
+<div class="banner">
+    <?= $this->render('//layouts/inc/sidebar') ?>
+    <div class="w3l_banner_nav_right">
+        <section class="slider">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <div class="w3l_banner_nav_right_banner">
+                            <h3><b>Мягкие</b><span><i>игрушки</i></span><b>крючком</b></h3>
+                            <div class="more">
+                                <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Заказать">Заказать</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="w3l_banner_nav_right_banner1">
-                        <h3>Make your <span>food</span> with Spicy.</h3>
-                        <div class="more">
-                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                    </li>
+                    <li>
+                        <div class="w3l_banner_nav_right_banner1">
+                            <h3>Создай <span><i>плешевое</i></span> настроение.</h3>
+                            <div class="more">
+                                <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Заказать">Заказать</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="w3l_banner_nav_right_banner2">
-                        <h3>upto <i>50%</i> off.</h3>
-                        <div class="more">
-                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                    </li>
+                    <li>
+                        <div class="w3l_banner_nav_right_banner2">
+                            <h3>Ми-ми-ми <i>восторг</i> успех.</h3>
+                            <div class="more">
+                                <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Заказать">Заказать</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-</div>
-<div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="clearfix"></div>
 </div>
 <!-- banner -->
 <div class="banner_bottom">
@@ -44,25 +47,25 @@ use yii\helpers\Url;
     <div class="wthree_banner_bottom_left_grid_sub1">
         <div class="col-md-4 wthree_banner_bottom_left">
             <div class="wthree_banner_bottom_left_grid">
-                <img src="images/4.jpg" alt=" " class="img-responsive" />
+                <img src="images/discount/1.jpg" alt=" " class="img-responsive" />
                 <div class="wthree_banner_bottom_left_grid_pos">
-                    <h4>Discount Offer <span>25%</span></h4>
+                    <h4><b>Скидки до </b><span>25%</span></h4>
                 </div>
             </div>
         </div>
         <div class="col-md-4 wthree_banner_bottom_left">
             <div class="wthree_banner_bottom_left_grid">
-                <img src="images/5.jpg" alt=" " class="img-responsive" />
+                <img src="images/discount/2.jpg" alt=" " class="img-responsive" />
                 <div class="wthree_banner_btm_pos">
-                    <h3>introducing <span>best store</span> for <i>groceries</i></h3>
+                    <h3 class="bg-info"><b>Ваш помошник в мире </b><i>Амигуруми</i></h3>
                 </div>
             </div>
         </div>
         <div class="col-md-4 wthree_banner_bottom_left">
             <div class="wthree_banner_bottom_left_grid">
-                <img src="images/6.jpg" alt=" " class="img-responsive" />
+                <img src="images/discount/3.jpg" alt=" " class="img-responsive" />
                 <div class="wthree_banner_btm_pos1">
-                    <h3>Save <span>Upto</span> $10</h3>
+                    <h3 class="bg-info">Сохраните <span><b>тепло</b></span>детям и себе</h3>
                 </div>
             </div>
         </div>
@@ -91,16 +94,18 @@ use yii\helpers\Url;
                                                 <a href="<?= Url::to(['product/view', 'id' => $offer['id']]) ?>">
                                                     <?= Html::img('@web/products/' . $offer["img"], ['alt' => $offer['title'], 'class' => 'img-responsive']) ?>
                                                 </a>
-                                                <p><?= $offer['title'] ?></p>
+                                                <p class="text-info"><?= $offer['title'] ?></p>
                                                 <h4>
-                                                    <?= $offer['price'] ?> <?php if ($offer['old_price'] != 0) : ?>
-                                                        <span><?= $offer['old_price'] ?></span> <?php endif; ?>
+                                                    <?= $offer['price'] ?> руб.
+                                                    <?php if ($offer['old_price'] != 0) : ?>
+                                                        <span><?= $offer['old_price'] ?></span>
+                                                    <?php endif; ?>
                                                 </h4>
                                             </div>
                                             <div class="snipcart-details top_brand_home_details">
                                                 <form action="checkout.html" method="post">
                                                     <fieldset>
-                                                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                                                        <input type="submit" name="submit" value="В корзину" class="button" />
                                                     </fieldset>
                                                 </form>
                                             </div>

@@ -4,6 +4,16 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+
+
+.m-5 {
+    margin: 10px;
+}
+
+.p-5 {
+    padding: 10px;
+}
+
 html, body{
     font-size: 100%;
 	font-family: 'Open Sans', sans-serif;
@@ -303,7 +313,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	margin-bottom: 5em;
 }
 .w3l_banner_nav_right_banner{
-	background:url(../images/1.jpg) no-repeat 0px 0px;
+	background:url(../images/banner/11.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -311,7 +321,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	-ms-background-size:cover;
 }
 .w3l_banner_nav_right_banner1{
-	background:url(../images/2.jpg) no-repeat 0px 0px;
+	background:url(../images/banner/22.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -319,7 +329,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	-ms-background-size:cover;
 }
 .w3l_banner_nav_right_banner2{
-	background:url(../images/3.jpg) no-repeat 0px 0px;
+	background:url(../images/banner/33.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -328,7 +338,7 @@ ul.dropdown-menu.drp-mnu li a i {
 }
 .w3l_banner_nav_right_banner h3,.w3l_banner_nav_right_banner1 h3,.w3l_banner_nav_right_banner2 h3{
 	font-size: 2em;
-    color: #fff;
+    color: rgb(3, 0, 194);
     font-weight: 300;
     text-transform: uppercase;
 	margin-bottom: 1em;
@@ -2824,6 +2834,14 @@ input.checkbox:checked:after {
     font-size: 1em;
 }
 /*-- //login --*/
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.snipcart-thumb img {
+	max-height: 140px;
+}
 /*-----start-responsive-design------*/
 @media (max-width:1680px){
 	.snipcart-details {

@@ -12,4 +12,11 @@ class AppController extends Controller
         $this->view->title = Yii::$app->name;
         return parent::beforeAction($action);
     }
+
+    protected function setMeta($title = null, $keywords = null, $description = null)
+    {
+        $this->view->title = $title;
+        $this->view->registerMetaTag(['name' => 'keywords', 'contetnt' => "$keywords"]);
+        $this->view->registerMetaTag(['name' => 'description', 'contetnt' => "$description"]);
+    }
 }

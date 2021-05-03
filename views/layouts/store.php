@@ -2,6 +2,7 @@
 
 use app\assets\AppAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -11,6 +12,7 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 
 <head>
+    <base href="/">
     <meta charset="<?= Yii::$app->charset ?>">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -23,11 +25,11 @@ AppAsset::register($this);
     <!-- header -->
     <div class="agileits_header">
         <div class="w3l_offers">
-            <a href="products.html">Today's special Offers !</a>
+            <a href="products.html">Новые предложения!</a>
         </div>
         <div class="w3l_search">
-            <form action="#" method="post">
-                <input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
+            <form action="<?= Url::to('search') ?>" method="get">
+                <input type="text" name="search" value="Найти продукты..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Найти продукты...';}" required="">
                 <input type="submit" value=" ">
             </form>
         </div>
@@ -47,8 +49,8 @@ AppAsset::register($this);
                     <div class="mega-dropdown-menu">
                         <div class="w3ls_vegetables">
                             <ul class="dropdown-menu drp-mnu">
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="login.html">Sign Up</a></li>
+                                <li><a href="login.html">Вход</a></li>
+                                <li><a href="login.html">Регистрация</a></li>
                             </ul>
                         </div>
                     </div>
@@ -56,7 +58,7 @@ AppAsset::register($this);
             </ul>
         </div>
         <div class="w3l_header_right1">
-            <h2><a href="mail.html">Contact Us</a></h2>
+            <h2><a href="mail.html">Написать</a></h2>
         </div>
         <div class="clearfix"> </div>
     </div>
@@ -64,20 +66,20 @@ AppAsset::register($this);
     <div class="logo_products">
         <div class="container">
             <div class="w3ls_logo_products_left">
-                <h1><a href="<?= \yii\helpers\Url::home() ?>"><span>Grocery</span> Store</a></h1>
+                <h1><a href="<?= \yii\helpers\Url::home() ?>"><span>Амигуруми</span>Магазин</a></h1>
             </div>
             <div class="w3ls_logo_products_left1">
                 <ul class="special_items">
-                    <li><a href="events.html">Events</a><i>/</i></li>
-                    <li><a href="about.html">About Us</a><i>/</i></li>
-                    <li><a href="products.html">Best Deals</a><i>/</i></li>
-                    <li><a href="services.html">Services</a></li>
+                    <li><a href="events.html">События</a><i>/</i></li>
+                    <li><a href="about.html">О нас</a><i>/</i></li>
+                    <li><a href="products.html">Лучшие предложения</a><i>/</i></li>
+                    <li><a href="services.html">Услуги</a></li>
                 </ul>
             </div>
             <div class="w3ls_logo_products_left1">
                 <ul class="phone_email">
-                    <li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>
-                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">store@grocery.com</a></li>
+                    <li><i class="fa fa-phone" aria-hidden="true"></i>+7 (904) 195 24 55</li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">store@amigurumi.ru</a></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>
@@ -85,22 +87,18 @@ AppAsset::register($this);
     </div>
     <!-- //header -->
 
-    <!-- banner -->
-    <div class="banner">
-        <?= $this->render('//layouts/inc/sidebar') ?>
-        <?= $content ?>
-    </div>
+    <?= $content ?>
 
     <!-- newsletter -->
     <div class="newsletter">
         <div class="container">
             <div class="w3agile_newsletter_left">
-                <h3>sign up for our newsletter</h3>
+                <h3>Подписаться на обновления</h3>
             </div>
             <div class="w3agile_newsletter_right">
                 <form action="#" method="post">
-                    <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-                    <input type="submit" value="subscribe now">
+                    <input type="email" name="Email" value="E-mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                    <input type="submit" value="Подписаться">
                 </form>
             </div>
             <div class="clearfix"> </div>
@@ -111,13 +109,12 @@ AppAsset::register($this);
     <div class="footer">
         <div class="container">
             <div class="col-md-3 w3_footer_grid">
-                <h3>information</h3>
+                <h3>Информация</h3>
                 <ul class="w3_footer_grid_list">
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="products.html">Best Deals</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="short-codes.html">Short Codes</a></li>
+                    <li><a href="events.html">События</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="products.html">Лучшие предложения</a></li>
+                    <li><a href="services.html">Услуги</a></li>
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
@@ -172,7 +169,7 @@ AppAsset::register($this);
                 <div class="clearfix"> </div>
             </div>
             <div class="wthree_footer_copy">
-                <p>© 2016 Grocery Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+                <p>© <?= date('Y') ?> Амигуруми. All rights reserved </p>
             </div>
         </div>
     </div>
