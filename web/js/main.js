@@ -1,27 +1,58 @@
-jQuery(document).ready(function($) {
+function showCart(cart) {
+    $('#modal-cart .modal-body').html(cart);
+    let cartSum = $('#cart-sum').html() ? $('#cart-sum').html() : '$0';
+    if (cartSum) {
+        console.log(cartSum);
+        $('.cart-sum').html(cartSum);
+    }
+}
 
-    $(".scroll").click(function(event){
+function getCart() {
+    $.get({
+        url: 'cart/show',
+        success: function (res) {
+            if (!res) { alert('Ошибка добавления товара в корзину!..') };
+            showCart(res);
+        },
+    });
+    return false;
+}
+
+function clearCart() {
+    $.get({
+        url: 'cart/clear',
+        success: function (res) {
+            if (!res) { alert('Ошибка добавления товара в корзину!..') };
+            showCart(res);
+        },
+    });
+    return false;
+}
+
+jQuery(document).ready(function ($) {
+
+    $(".scroll").click(function (event) {
         event.preventDefault();
-        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+        $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
     });
 
-    var navoffeset=$(".agileits_header").offset().top;
-    $(window).scroll(function(){
-        var scrollpos=$(window).scrollTop();
-        if(scrollpos >=navoffeset){
+    var navoffeset = $(".agileits_header").offset().top;
+    $(window).scroll(function () {
+        var scrollpos = $(window).scrollTop();
+        if (scrollpos >= navoffeset) {
             $(".agileits_header").addClass("fixed");
-        }else{
+        } else {
             $(".agileits_header").removeClass("fixed");
         }
     });
 
     $(".dropdown").hover(
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+        function () {
+            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
             $(this).toggleClass('open');
         },
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+        function () {
+            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
             $(this).toggleClass('open');
         }
     );
@@ -35,33 +66,53 @@ jQuery(document).ready(function($) {
         shadow: "0 0 5px #000"
     });
 
-
-});
-
-$(window).load(function(){
     $('.flexslider').flexslider({
         animation: "slide",
-        start: function(slider){
+        start: function (slider) {
             $('body').removeClass('loading');
         }
     });
+
+    /* Cart */
+
+    $(".add-to-cart").on("click", function () {
+        console.log($(this).text());
+        let id = $(this).data("id");
+        $.get({
+            url: 'cart/add',
+            data: { id: id },
+            success: function (res) {
+                if (!res) { alert('Ошибка добавления товара в корзину!..') };
+                showCart(res);
+            },
+            error: function () {
+                alert('Error! Try again later');
+            }
+        });
+        return false;
+    });
+
+    $("#modal-cart .modal-body").on("click", ".del-item", function () {
+        let id = $(this).data("id");
+        $.get({
+            url: 'cart/del-item',
+            data: { id: id },
+            success: function (res) {
+                if (!res) { alert('Ошибка добавления товара в корзину!..') };
+                let now_location = document.location.pathname;
+                if (now_location == '/cart/checkout') {
+                    location = 'cart/checkout';
+                };
+                showCart(res);
+            },
+            error: function () {
+                alert('Error! Try again later');
+            }
+        });
+    });
+    /* Cart */
+
 });
 
-paypal.minicart.render();
 
-paypal.minicart.cart.on('checkout', function (evt) {
-    var items = this.items(),
-        len = items.length,
-        total = 0,
-        i;
 
-    // Count the number of each item in the cart
-    for (i = 0; i < len; i++) {
-        total += items[i].get('quantity');
-    }
-
-    if (total < 3) {
-        alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-        evt.preventDefault();
-    }
-});

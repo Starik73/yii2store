@@ -4,8 +4,11 @@
 
 $this->title = 'My Yii Application';
 ?>
-<div class="site-index">
-
+<div class="site-index text-center">
+<hr>
+<hr>
+<hr>
+<hr>
     <div class="jumbotron">
         <h1>Congratulations!</h1>
 

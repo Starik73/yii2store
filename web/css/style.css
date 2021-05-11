@@ -4,16 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
-
-
-.m-5 {
-    margin: 10px;
-}
-
-.p-5 {
-    padding: 10px;
-}
-
 html, body{
     font-size: 100%;
 	font-family: 'Open Sans', sans-serif;
@@ -313,7 +303,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	margin-bottom: 5em;
 }
 .w3l_banner_nav_right_banner{
-	background:url(../images/banner/11.jpg) no-repeat 0px 0px;
+	background:url(../images/1.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -321,7 +311,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	-ms-background-size:cover;
 }
 .w3l_banner_nav_right_banner1{
-	background:url(../images/banner/22.jpg) no-repeat 0px 0px;
+	background:url(../images/2.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -329,7 +319,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	-ms-background-size:cover;
 }
 .w3l_banner_nav_right_banner2{
-	background:url(../images/banner/33.jpg) no-repeat 0px 0px;
+	background:url(../images/3.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -338,7 +328,7 @@ ul.dropdown-menu.drp-mnu li a i {
 }
 .w3l_banner_nav_right_banner h3,.w3l_banner_nav_right_banner1 h3,.w3l_banner_nav_right_banner2 h3{
 	font-size: 2em;
-    color: rgb(3, 0, 194);
+    color: #fff;
     font-weight: 300;
     text-transform: uppercase;
 	margin-bottom: 1em;
@@ -1721,6 +1711,52 @@ h2.typoh2{
 		margin-bottom: 0em;
 	}
 }
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+	background-color: #fa1818;
+	border-color: #fa1818;
+}
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus, .pagination > li > a, .pagination > li > span{
+	color: #fa1818;
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+}
+.snipcart-thumb img{
+	max-height: 140px;
+}
+
+.product_list_header button.button {
+	color: #fff;
+	font-size: 14px;
+	outline: none;
+	text-transform: capitalize;
+	padding: .5em 2.5em .5em 1em;
+	border: 1px solid #84c639;
+	margin: .35em 0 0;
+	background: url(../images/cart.png) no-repeat 116px 9px;
+	width: 144px;
+}
+.snipcart-details a.button {
+	font-size: 14px;
+	color: #fff;
+	background: #FA1818;
+	text-decoration: none;
+	position: relative;
+	border: none;
+	border-radius: 0;
+	width: 100%;
+	display: block;
+	text-transform: uppercase;
+	padding: .5em 0;
+	outline: none;
+}
+.agile_top_brand_left_grid:hover .snipcart-details a.button, .snipcart-details a.button:hover {
+	background: #84C639;
+}
+
 @media (max-width:640px){
 	h1, .h1, h2, .h2, h3, .h3 {
 		margin-top: 0px;
@@ -2834,14 +2870,6 @@ input.checkbox:checked:after {
     font-size: 1em;
 }
 /*-- //login --*/
-img {
-	max-width: 100%;
-	height: auto;
-}
-
-.snipcart-thumb img {
-	max-height: 140px;
-}
 /*-----start-responsive-design------*/
 @media (max-width:1680px){
 	.snipcart-details {
@@ -4835,4 +4863,74 @@ img {
 		background: url(../images/cart.png) no-repeat 105px 5px;
 		font-size: 13px;
 	}
+}
+
+.h-50 {
+	height: 50px;
+}
+.product_list_header span .black {
+	color: #000;
+}
+.del-item {
+	color: #000;
+	cursor: pointer;
+}
+.del-item:hover {
+	opacity: .5;
+	color:#004284;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+	color: #000;
+}
+.product_list_header span {
+    font-size: 1em;
+    color: #ff0505;
+    top: 0em;
+}
+.silver {
+	color: silver!important;
+}
+.cart-sum {
+	color: rgb(255, 255, 255)!important;
+}
+.value-minus, .value-plus {
+	background-color: #fff;
+	color: #000;
+	border-radius: 1.5em;
+	border: 1px solid black;
+}
+.value {
+	background-color: rgb(220, 220, 220);
+	color: #191919;
+	border-radius: 0.2em;
+	border: 1px solid black;
+	font-weight: bold;
+}
+.cart-table{
+	position: relative;
+}
+.cart-table .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.5);
+	z-index: 10;
+	display: none;
+}
+.cart-table .overlay .fa{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size:30px;
+	margin-left: -15px;
+	margin-top: -15px;
+	color: greenyellow;
+}
+.mb-10{
+	margin-bottom: 10px;
+}
+.mt-10{
+	margin-top: 10px;
 }

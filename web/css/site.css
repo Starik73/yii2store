@@ -96,20 +96,6 @@ a.desc:after {
     border: none;
 }
 
-.mb-5 {
-    bottom: 10px;
-}
-
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-    background-color: #ff1818!important;
-    border-color: #ff1818!important;
-}
-
-.pagination > li > a, .pagination > li > span {
-    color: #000!important;
-    font-weight: 800;
-}
-
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;

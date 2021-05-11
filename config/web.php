@@ -15,7 +15,24 @@ $config = [
     'language' => 'ru',
     'name' => 'TestStore',
     'layout' => 'store',
+    'modules' => [
+        'backend' => [
+            'class' => 'app\modules\backend\Module',
+            'defaultRoute' => 'default/index',
+            'layout' => 'backend',
+        ],
+    ],
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,   // не опубликовывать комплект
+                    'js' => [
+                        'js/jquery-3.6.0.min.js',
+                    ]
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'ALgag-v1841oUVVB-0g1vMxfSdQuLKFs',
@@ -27,16 +44,24 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => '/backend/auth/login',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
+            // 'class' => 'gulltour\phpmailer\Mailer',
+            'viewPath' => '@app/mail',
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.mailtrap.io',
+                'username' => 'b2ad64f24a3735',
+                'password' => 'c7e30dfb3a030c',
+                'port' => '2525',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -53,6 +78,7 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+                'backend/' => 'backend/default/index',
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
@@ -69,14 +95,14 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
 

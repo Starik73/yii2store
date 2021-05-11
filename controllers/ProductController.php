@@ -29,10 +29,16 @@ class ProductController extends AppController
             
         }
 
+        $offers = Product::find()
+        ->where(['is_offer' => 1])
+        ->asArray(['id'])
+        ->limit(4)
+        ->all();
+
         $this->setMeta("{$product->title} :: " . Yii::$app->name, $product->keywords, $product->description);
 
         $category = Category::findOne($product->category_id);
 
-        return $this->render('view',compact('product', 'category'));
+        return $this->render('view',compact('product', 'category', 'offers'));
     }
 }

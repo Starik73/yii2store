@@ -60,6 +60,11 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            if($this->rememberMe){
+                $_user = $this->getUser();
+                $_user->generateAuthKey();
+                $_user->save();
+            }
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
@@ -75,7 +80,18 @@ class LoginForm extends Model
         if ($this->_user === false) {
             $this->_user = User::findByUsername($this->username);
         }
-
         return $this->_user;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Имя пользователя',
+            'password' => 'Пароль',
+            'rememberMe' => 'Запомнить',
+        ];
     }
 }
