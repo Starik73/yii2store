@@ -13,10 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="row">
     <div class="col-md12">
         <div class="box" wfd-id="142">
-            <div class="box-header" wfd-id="164">
-                <h3 class="box-title"><?= Html::a('Создать заказ', ['create'], ['class' => 'btn btn-success']) ?></h3>
-            </div>
-            <!-- /.box-header -->
             <div class="box-body" wfd-id="143">
                 <?php Pjax::begin(); ?>
                 <?php // echo $this->render('_search', ['model' => $searchModel]);
@@ -25,29 +21,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     'dataProvider' => $dataProvider,
                     // 'filterModel' => $searchModel,
                     'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
+                        // ['class' => 'yii\grid\SerialColumn'],
+                        'id',
                         'name',
                         'email:email',
                         'phone',
                         'total',
                         [
                             'attribute' => 'status',
-                            'value' => function($data){
+                            'value' => function ($data) {
                                 if ($data->status == 0) {
-                                    return '<span class="text-green">новый</span>';     
+                                    return '<span class="text-green">новый</span>';
                                 } elseif ($data->status == 1) {
-                                    return '<span class="text-blue">ожидает оплаты</span>';  
+                                    return '<span class="text-blue">ожидает оплаты</span>';
                                 } elseif ($data->status == 2) {
-                                    return '<span class="text-red">завершен</span>';  
+                                    return '<span class="text-red">завершен</span>';
                                 }
-                                
                             },
                             'format' => 'html',
                         ],
                         // 'status',
                         'created_at:date',
                         'note:ntext',
-                        // 'id',
                         // 'updated_at',
                         // 'qty',
                         // 'address',
@@ -56,7 +51,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
                 <?php Pjax::end(); ?>
             </div>
-            <!-- /.box-body -->
+            <div class="box-header" wfd-id="164">
+                <h3 class="box-title"><?= Html::a('Создать заказ', ['create'], ['class' => 'btn btn-success']) ?></h3>
+            </div>
         </div>
     </div>
 </div>

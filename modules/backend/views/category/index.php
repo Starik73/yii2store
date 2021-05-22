@@ -20,9 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- /.box-header -->
             <div class="box-body" wfd-id="143">
                 <div class="category-index">
-
                     <?php Pjax::begin(); ?>
-
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
@@ -44,9 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['class' => 'yii\grid\ActionColumn'],
                         ],
                     ]); ?>
-
                     <?php Pjax::end(); ?>
-
                 </div>
             </div>
         </div>

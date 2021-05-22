@@ -32,6 +32,14 @@ class Order extends ActiveRecord
         return 'orders';
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrderProduct()
+    {
+        return $this->hasMany(OrderProduct::class, ['order_id' => 'id']);
+    }
+
     public function behaviors()
     {
         return [
@@ -78,15 +86,7 @@ class Order extends ActiveRecord
             'email' => 'Email',
             'phone' => 'Телефон',
             'address' => 'Адрес',
-            'note' => 'Заметка',
+            'note' => 'Примечание',
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getOrderProduct()
-    {
-        return $this->hasMany(OrderProduct::class, ['order_id' => 'id']);
     }
 }

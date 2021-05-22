@@ -34,7 +34,7 @@ class Product extends ActiveRecord
         return 'product';
     }
 
-        /**
+    /**
      * {@inheritdoc}
      */
     public function getCategory()

@@ -15,13 +15,8 @@ $this->params['breadcrumbs'][] = 'Изменить';
     <div class="col-md-12">
         <div class="box" wfd-id="142">
             <div class="box-body">
-
                 <div class="category-update">
-
-                    <?= $this->render('_form', [
-                        'model' => $model,
-                    ]) ?>
-
+                    <?= $this->render('_form', ['model' => $model]) ?>
                 </div>
             </div>
         </div>

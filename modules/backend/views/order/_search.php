@@ -19,13 +19,9 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'id') ?>
-
     <?= $form->field($model, 'created_at') ?>
-
     <?= $form->field($model, 'updated_at') ?>
-
     <?= $form->field($model, 'qty') ?>
-
     <?= $form->field($model, 'total') ?>
 
     <?php // echo $form->field($model, 'status') ?>

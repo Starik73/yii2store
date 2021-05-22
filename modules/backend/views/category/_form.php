@@ -26,7 +26,6 @@ use app\components\MenuWidget;
                         'cache_time' => 0,
                     ]) ?>
                 </select>
-
                 <div class="help-block" wfd-id="53"></div>
             </div>
         </div>
@@ -36,7 +35,6 @@ use app\components\MenuWidget;
         <div class="col-md-6">
             <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
         </div>
-
     </div>
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-info']) ?>

@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body" wfd-id="143">
                 <div class="category-view">
                     <?= DetailView::widget([
@@ -47,6 +46,43 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]) ?>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">
+                    Товары в данной категории:
+                </h3>
+            </div>
+            <div class="box-body">
+                <?php if (!empty($model->product)) : ?>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Наименование</th>
+                                    <th>Цена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($model->product as $product) : ?>
+                                    <tr>
+                                        <td><?= $product->id ?></td>
+                                        <td><?= $product->title ?></td>
+                                        <td><?= $product->price ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php else : ?>
+                    <h3>Странный заказ - нет товаров</h3>
+                <?php endif; ?>
             </div>
         </div>
     </div>

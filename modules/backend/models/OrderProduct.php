@@ -4,6 +4,7 @@ namespace app\modules\backend\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use app\modules\backend\models\Order;
 
 /**
  * This is the model class for table "order_product".

@@ -4,6 +4,7 @@ namespace app\modules\backend\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use app\modules\backend\models\Product;
 
 /**
  * This is the model class for table "category".
@@ -50,11 +51,19 @@ class Category extends ActiveRecord
         ];
     }
 
-        /**
+    /**
      * {@inheritdoc}
      */
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'parent_id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProduct()
+    {
+        return $this->hasMany(Product::class, ['category_id' => 'id']);
     }
 }
