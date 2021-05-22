@@ -4,6 +4,7 @@ namespace app\components;
 
 use app\models\Category;
 use yii\base\Widget;
+use Yii;
 
 class MenuWidget extends Widget
 {
@@ -13,14 +14,16 @@ class MenuWidget extends Widget
     public $data;
     public $tree;
     public $menuHtml;
+    public $model;
+    public $cache_time = 60;
 
     public function init()
     {
         parent::init();
-        if($this->ul_class === null){
+        if ($this->ul_class === null) {
             $this->ul_class = 'menu';
         }
-        if($this->tpl === null){
+        if ($this->tpl === null) {
             $this->tpl = 'menu';
         }
         $this->tpl .= '.php';
@@ -28,11 +31,14 @@ class MenuWidget extends Widget
 
     public function run()
     {
-        // get cache
-        $menu = \Yii::$app->cache->get('menu');
-        if($menu){
-            return $menu;
+        if ($this->cache_time) {
+            // get cache
+            $menu = Yii::$app->cache->get('menu');
+            if ($menu) {
+                return $menu;
+            }
         }
+
 
         $this->data = Category::find()->select('id, parent_id, title')->indexBy('id')->asArray()->all();
         $this->tree = $this->getTree();
@@ -40,14 +46,17 @@ class MenuWidget extends Widget
         $this->menuHtml .= $this->getMenuHtml($this->tree);
         $this->menuHtml .= '</ul>';
 
-        // set cache
-        \Yii::$app->cache->set('menu', $this->menuHtml, 60);
+        if ($this->cache_time) {
+            // set cache
+            Yii::$app->cache->set('menu', $this->menuHtml, $this->cache_time);
+        }
         return $this->menuHtml;
     }
 
-    protected function getTree(){
+    protected function getTree()
+    {
         $tree = [];
-        foreach ($this->data as $id=>&$node) {
+        foreach ($this->data as $id => &$node) {
             if (!$node['parent_id'])
                 $tree[$id] = &$node;
             else
@@ -56,18 +65,19 @@ class MenuWidget extends Widget
         return $tree;
     }
 
-    protected function getMenuHtml($tree){
+    protected function getMenuHtml($tree, $tab = '')
+    {
         $str = '';
         foreach ($tree as $category) {
-            $str .= $this->catToTemplate($category);
+            $str .= $this->catToTemplate($category, $tab);
         }
         return $str;
     }
 
-    protected function catToTemplate($category){
+    protected function catToTemplate($category, $tab)
+    {
         ob_start();
         include __DIR__ . '/menu_tpl/' . $this->tpl;
         return ob_get_clean();
     }
-
 }

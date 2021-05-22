@@ -26,7 +26,6 @@
                         <th>Product</th>
                         <th>Quality</th>
                         <th>Product Name</th>
-
                         <th>Price</th>
                         <th>Remove</th>
                     </tr>
@@ -44,13 +43,11 @@
                             </div>
                         </td>
                         <td class="invert">Fortune Sunflower Oil</td>
-
                         <td class="invert">$290.00</td>
                         <td class="invert">
                             <div class="rem">
                                 <div class="close1"> </div>
                             </div>
-
                         </td>
                     </tr>
                     <tr class="rem2">
@@ -66,7 +63,6 @@
                             </div>
                         </td>
                         <td class="invert">Basmati Rise (5 Kg)</td>
-
                         <td class="invert">$250.00</td>
                         <td class="invert">
                             <div class="rem">
@@ -88,7 +84,6 @@
                             </div>
                         </td>
                         <td class="invert">Pepsi Soft Drink (2 Ltr)</td>
-
                         <td class="invert">$15.00</td>
                         <td class="invert">
                             <div class="rem">

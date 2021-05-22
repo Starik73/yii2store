@@ -3,15 +3,17 @@
 namespace app\modules\backend\controllers;
 
 use Yii;
-use app\modules\backend\models\Order;
-use app\modules\backend\models\OrderSearch;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
+use app\modules\backend\models\Product;
+use app\modules\backend\models\Category;
+use app\modules\backend\models\CategorySearch;
+use app\modules\backend\controllers\AdminAppController;
 
 /**
- * OrderController implements the CRUD actions for Order model.
+ * CategoryController implements the CRUD actions for Category model.
  */
-class OrderController extends AdminAppController
+class CategoryController extends AdminAppController
 {
     /**
      * {@inheritdoc}
@@ -20,7 +22,7 @@ class OrderController extends AdminAppController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::class,
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -29,12 +31,12 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Lists all Order models.
+     * Lists all Category models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OrderSearch();
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,7 +46,7 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Displays a single Order model.
+     * Displays a single Category model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -57,13 +59,13 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Creates a new Order model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Order();
+        $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +77,7 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Updates an existing Order model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -86,7 +88,6 @@ class OrderController extends AdminAppController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('info', 'Заказ успешно обновлен');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -96,7 +97,7 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Deletes an existing Order model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,24 +105,31 @@ class OrderController extends AdminAppController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->unlinkAll('orderProduct', true);
-        $result = $this->findModel($id)->delete();
-        if ($result) {
-            Yii::$app->session->setFlash('info', "Заказ c ID#{$id} удален");
+        $children_categories = Category::find()->where(['parent_id' => $id])->count();
+        $children_products = Product::find()->where(['category_id' => $id])->count();
+        
+        if ($children_categories) {
+            Yii::$app->session->setFlash('info', "Невозможно удалить категорию ID {$id}, существуют вложенные категории");
+        } elseif ($children_products) {
+            Yii::$app->session->setFlash('info', "Невозможно удалить категорию ID {$id}, существуют вложенные продукты");
+        } else {
+            $this->findModel($id)->delete();
+            Yii::$app->session->setFlash('success', "Категория ID {$id} удалена");
         }
+
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Order model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Order the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         }
 

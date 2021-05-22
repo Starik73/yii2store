@@ -4,6 +4,9 @@ namespace app\modules\backend\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+
 /**
  * This is the model class for table "orders".
  *
@@ -27,6 +30,21 @@ class Order extends ActiveRecord
     public static function tableName()
     {
         return 'orders';
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // если вместо метки времени UNIX используется datetime:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
     }
 
     /**
@@ -53,8 +71,8 @@ class Order extends ActiveRecord
             'id' => 'ID',
             'created_at' => 'Создан',
             'updated_at' => 'Обновлен',
-            'qty' => 'Количество',
-            'total' => 'Итого',
+            'qty' => 'Количество товаров в заказе',
+            'total' => 'Сумма заказа',
             'status' => 'Статус',
             'name' => 'Заказчик',
             'email' => 'Email',
@@ -62,5 +80,13 @@ class Order extends ActiveRecord
             'address' => 'Адрес',
             'note' => 'Заметка',
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrderProduct()
+    {
+        return $this->hasMany(OrderProduct::class, ['order_id' => 'id']);
     }
 }

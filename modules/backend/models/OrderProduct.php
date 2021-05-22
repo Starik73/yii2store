@@ -54,4 +54,12 @@ class OrderProduct extends ActiveRecord
             'total' => 'Total',
         ];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrder()
+    {
+        return $this->hasOne(Order::class, ['id' => 'order_id']);
+    }
 }

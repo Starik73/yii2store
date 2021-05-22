@@ -22,18 +22,29 @@ use yii\helpers\Url;
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Главное меню</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="<?= Url::to('backend/default/index') ?>"><i class="fa fa-bar-chart"></i> <span>Статистика магазина</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+            <li class="active"><a href="<?= Url::to('backend/default/index') ?>"><i class="fa fa-check-square-o"></i> <span>Статистика магазина</span></a></li>
+            <li><a href="<?= Url::to('backend/order/index') ?>"><i class="fa fa-file-text"></i> <span>Работа с заказами</span></a></li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+                <a href="#"><i class="fa fa-shopping-cart"></i> <span>Товары</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                    <li><a href="<?= Url::to('backend/product/index') ?>">Список товаров</a></li>
+                    <li><a href="<?= Url::to('backend/product/create') ?>">Добавить товар</a></li>
                 </ul>
+                <li class="treeview">
+                <a href="#"><i class="fa fa-cubes"></i> <span>Категории</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to('backend/category/index') ?>">Список категорий</a></li>
+                    <li><a href="<?= Url::to('backend/category/create') ?>">Добавить категорию</a></li>
+                </ul>
+            </li>
             </li>
         </ul>
         <!-- /.sidebar-menu -->

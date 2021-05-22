@@ -210,13 +210,17 @@ BackAsset::register($this);
                     <?= $this->title ?>
                     <small>Optional description</small>
                 </h1>
-                <?= Alert::widget() ?>
                 <ol class="breadcrumb">
                     <?= Breadcrumbs::widget([
                         'homeLink' => ['label' => 'Главная', 'url' => Url::to('/backend')],
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                     ]) ?>
                 </ol>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6"><?= Alert::widget() ?></div>
+                    <div class="col-md-3"></div>
+                </div>
             </section>
             <!-- Main content -->
             <section class="content container-fluid">
@@ -245,5 +249,6 @@ BackAsset::register($this);
     <!-- ./wrapper -->
     <?php $this->endBody() ?>
 </body>
+
 </html>
 <?php $this->endPage() ?>

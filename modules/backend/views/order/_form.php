@@ -12,30 +12,29 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'qty')->textInput() ?>
-
-    <?= $form->field($model, 'total')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="row">
+        <div class="col-md-6"> <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?> </div>
+        <div class="col-md-6"> <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?> </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'status')->dropDownList($items = [
+                '0' => 'Новый',
+                '1' => 'Ожидает оплаты',
+                '2' => 'Завершен',
+            ], $options = []) ?>
+        </div>
+        <div class="col-md-6"> <?= $form->field($model, 'qty')->textInput() ?> </div>
+        <div class="col-md-6"> <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?> </div>
+        <div class="col-md-6"> <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?> </div>
+        <div class="col-md-12"> <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?> </div>
+        <div class="col-md-6"> <?= $form->field($model, 'total')->textInput(['maxlength' => true]) ?> </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <div class="form-group">
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-info']) ?>
+    </div>
+
+</div>
+
+<?php ActiveForm::end(); ?>
 
 </div>

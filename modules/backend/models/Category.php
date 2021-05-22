@@ -43,10 +43,18 @@ class Category extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'parent_id' => 'Parent ID',
-            'title' => 'Title',
-            'description' => 'Description',
-            'keywords' => 'Keywords',
+            'parent_id' => 'Родительская категория',
+            'title' => 'Наименование',
+            'description' => 'Description (meta)',
+            'keywords' => 'Keywords (meta) ',
         ];
+    }
+
+        /**
+     * {@inheritdoc}
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'parent_id']);
     }
 }

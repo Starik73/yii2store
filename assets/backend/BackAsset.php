@@ -30,6 +30,7 @@ class BackAsset extends AssetBundle
     public $js = [
         'back/js/bootstrap.min.js',
         'back/js/adminlte.min.js',
+        'back/js/menu.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

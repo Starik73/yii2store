@@ -1,7 +1,8 @@
 <?php
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
 
 ?>
 
@@ -81,15 +82,19 @@ use yii\helpers\Url;
                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
                                     <?php if ($product->is_offer) : ?>
                                         <div class="agile_top_brand_left_grid_pos">
-                                            <?= \yii\helpers\Html::img('@web/images/offer.png', ['alt' => 'offer', 'class' => 'img-responsive']) ?>
+                                            <?= Html::img('@web/images/offer.png', ['alt' => 'offer', 'class' => 'img-responsive']) ?>
                                         </div>
                                     <?php endif; ?>
                                     <div class="agile_top_brand_left_grid1">
                                         <figure>
                                             <div class="snipcart-item block">
                                                 <div class="snipcart-thumb">
-                                                    <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>">
-                                                        <?= \yii\helpers\Html::img("@web/products/{$product->img}", ['alt' => $product->title]) ?>
+                                                    <a href="<?= Url::to(['product/view', 'id' => $product->id]) ?>">
+                                                        <?php if ($product->img) : ?>
+                                                            <?= Html::img("@web/{$product->img}", ['alt' => $product->title]) ?>
+                                                        <?php else : ?>
+                                                            <?= Html::img("@web/products/no-image.png", ['alt' => $product->title]) ?>
+                                                        <?php endif; ?>
                                                     </a>
                                                     <p><?= $product->title ?></p>
                                                     <h4>
@@ -100,7 +105,7 @@ use yii\helpers\Url;
                                                     </h4>
                                                 </div>
                                                 <div class="snipcart-details">
-                                                <a href="<?= Url::to(['cart/add', 'id' => $product->id]) ?>" data-id="<?= $product->id ?>" class="button add-to-cart">Add to cart</a>
+                                                    <a href="<?= Url::to(['cart/add', 'id' => $product->id]) ?>" data-id="<?= $product->id ?>" class="button add-to-cart">Add to cart</a>
                                                 </div>
                                             </div>
                                         </figure>
@@ -111,10 +116,7 @@ use yii\helpers\Url;
                     <?php endforeach; ?>
                     <div class="clearfix"></div>
                     <div class="col-md-12">
-                        <?php
-                        echo  \yii\widgets\LinkPager::widget([
-                            'pagination' => $pages,
-                        ]);
+                        <?= LinkPager::widget(['pagination' => $pages,]);
                         ?>
                     </div>
                 </div>

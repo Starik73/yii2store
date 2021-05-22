@@ -60,7 +60,7 @@ use yii\helpers\Url;
                                         <div class="snipcart-item block">
                                             <div class="snipcart-thumb">
                                                 <a href="<?= Url::to(['product/view', 'id' => $offer['id']]) ?>">
-                                                    <?= Html::img('@web/products/' . $offer["img"], ['alt' => $offer['title'], 'class' => 'img-responsive']) ?>
+                                                    <?= Html::img('@web/' . $offer["img"], ['alt' => $offer['title'], 'class' => 'img-responsive']) ?>
                                                 </a>
                                                 <p class="text-info"><?= $offer['title'] ?></p>
                                                 <h4>

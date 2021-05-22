@@ -22,6 +22,7 @@ use app\models\Category;
  */
 class Product extends ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */

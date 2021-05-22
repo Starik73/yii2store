@@ -1,8 +1,8 @@
 function showCart(cart) {
     $('#modal-cart .modal-body').html(cart);
+    $('#modal-cart').modal();
     let cartSum = $('#cart-sum').html() ? $('#cart-sum').html() : '$0';
     if (cartSum) {
-        console.log(cartSum);
         $('.cart-sum').html(cartSum);
     }
 }
@@ -14,6 +14,9 @@ function getCart() {
             if (!res) { alert('Ошибка добавления товара в корзину!..') };
             showCart(res);
         },
+        error: function(){
+            alert('Error!');
+        }
     });
     return false;
 }

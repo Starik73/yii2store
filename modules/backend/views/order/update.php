@@ -5,17 +5,20 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\backend\models\Order */
 
-$this->title = 'Update Order: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = "Редиатирование заказа № {$model->id}";
+$this->params['breadcrumbs'][] = ['label' => 'Заказы', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => "Заказ номер #{$model->id}", 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = "Редиатирование";
 ?>
-<div class="order-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+<div class="row">
+    <div class="col-md-12">
+        <div class="box" wfd-id="142">
+            <div class="box-body">
+                <div class="order-update">
+                    <?= $this->render('_form', ['model' => $model,]) ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

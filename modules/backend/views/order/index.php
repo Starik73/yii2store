@@ -26,20 +26,32 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-
-                        // 'id',
-                        'created_at',
-                        // 'updated_at',
-                        // 'qty',
-                        'total',
-                        'status',
                         'name',
                         'email:email',
                         'phone',
-                        // 'address',
+                        'total',
+                        [
+                            'attribute' => 'status',
+                            'value' => function($data){
+                                if ($data->status == 0) {
+                                    return '<span class="text-green">новый</span>';     
+                                } elseif ($data->status == 1) {
+                                    return '<span class="text-blue">ожидает оплаты</span>';  
+                                } elseif ($data->status == 2) {
+                                    return '<span class="text-red">завершен</span>';  
+                                }
+                                
+                            },
+                            'format' => 'html',
+                        ],
+                        // 'status',
+                        'created_at:date',
                         'note:ntext',
-
-                        ['class' => 'yii\grid\ActionColumn'],
+                        // 'id',
+                        // 'updated_at',
+                        // 'qty',
+                        // 'address',
+                        ['class' => 'yii\grid\ActionColumn', 'header' => 'Действия'],
                     ],
                 ]); ?>
                 <?php Pjax::end(); ?>

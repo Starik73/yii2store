@@ -49,7 +49,7 @@ use app\widgets\Alert;
                                     <tr>
                                         <td class="invert"><?= $id ?></td>
                                         <td class="invert-image">
-                                            <a href="<?= Url::to(['product/view', 'id' => $id]) ?>"><?= Html::img("@web/products/{$product['img']}", ['alt' => $product['title'], 'class' => 'h-50']) ?></a>
+                                            <a href="<?= Url::to(['product/view', 'id' => $id]) ?>"><?= Html::img("@web/{$product['img']}", ['alt' => $product['title'], 'class' => 'h-50']) ?></a>
                                         </td>
                                         <td class="invert">
                                             <div class="quantity">

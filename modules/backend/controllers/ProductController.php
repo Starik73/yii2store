@@ -3,15 +3,16 @@
 namespace app\modules\backend\controllers;
 
 use Yii;
-use app\modules\backend\models\Order;
-use app\modules\backend\models\OrderSearch;
+use app\modules\backend\models\Product;
+use app\modules\backend\models\ProductSearch;
+use app\modules\backend\controllers\AdminAppController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrderController implements the CRUD actions for Order model.
+ * ProductController implements the CRUD actions for Product model.
  */
-class OrderController extends AdminAppController
+class ProductController extends AdminAppController
 {
     /**
      * {@inheritdoc}
@@ -20,7 +21,7 @@ class OrderController extends AdminAppController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::class,
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -29,12 +30,12 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Lists all Order models.
+     * Lists all Product models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OrderSearch();
+        $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,7 +45,7 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Displays a single Order model.
+     * Displays a single Product model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -57,13 +58,13 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Creates a new Order model.
+     * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Order();
+        $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +76,7 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Updates an existing Order model.
+     * Updates an existing Product model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -86,7 +87,6 @@ class OrderController extends AdminAppController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('info', 'Заказ успешно обновлен');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -96,7 +96,7 @@ class OrderController extends AdminAppController
     }
 
     /**
-     * Deletes an existing Order model.
+     * Deletes an existing Product model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,24 +104,21 @@ class OrderController extends AdminAppController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->unlinkAll('orderProduct', true);
-        $result = $this->findModel($id)->delete();
-        if ($result) {
-            Yii::$app->session->setFlash('info', "Заказ c ID#{$id} удален");
-        }
+        $this->findModel($id)->delete();
+
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Order model based on its primary key value.
+     * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Order the loaded model
+     * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         }
 
